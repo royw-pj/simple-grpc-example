@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcServerDemo";
+
+package quote;
+
+service GrpcTesting {
+  rpc BidirectionalStreaming (stream CodeRequest) returns (stream QuoteResponse);
+  rpc SubscribeQuote (CodeRequest) returns (stream QuoteResponse);
+  rpc GetProductDetail (CodeRequest) returns (ProductDetailResponse);
+}
+
+message ProductDetailResponse {
+  string code = 1;
+  string name = 2;
+  string description = 3;
+}
+
+message Price {
+  float open = 1;
+  float high = 2;
+  float low = 3;
+  float close = 4;
+  float nominal = 5;
+}
+message CodeRequest {
+  string code = 1;
+}
+
+message QuoteResponse {
+  string code = 1;
+  Price price = 2;
+}
