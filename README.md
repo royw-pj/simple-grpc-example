@@ -22,6 +22,9 @@ Browser(Client)  ---------- Envoy ---------- gRPC Server <br/>
 ### Start the project
 `docker-compose up -d`    *(Privilege mode required as it binds port 80.)*
 
+------------
+### Stop the project
+`docker-compose down`
 
 ------------
 ### Change and compile the proto
