@@ -6,11 +6,15 @@ Containerized gRPC-web demo using
 - Nginx (React app hosting)
 ------------
 ### Architecture
-Browser(Client)  ---------- Envoy ---------- gRPC Server <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\ <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\ ------------ React app
+Browser(Client) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|  <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|  <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|  <br/>
+Envoy ---------- gRPC Server <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|  <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|  <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|  <br/>
+React app
 
 ------------
 ### Prerequisite
@@ -18,16 +22,18 @@ Browser(Client)  ---------- Envoy ---------- gRPC Server <br/>
 2. docker-compose
 
 ------------
-
-### Start the project
-`docker-compose up -d`    *(Privilege mode required as it binds port 80.)*
+# How to?
+### a) Start the project
+1. `docker-compose up -d` *(Privilege mode may be required)*
+2. Go to `http://localhost/`, 
+  or `http://192.168.99.100/` when using Docker Desktop on win7
 
 ------------
-### Stop the project
+### b) Stop the project
 `docker-compose down`
 
 ------------
-### Change and compile the proto
+### c) Change and compile the proto
 1. Download the protobuf compiler: https://github.com/protocolbuffers/protobuf/releases/
 2. Download the plugin for grpc-web: https://github.com/grpc/grpc-web/releases
 3. ***protoc.exe*** , ***protoc-gen-grpc-web.exe*** and ****.proto*** are placed into same directory.
