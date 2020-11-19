@@ -29,6 +29,10 @@ static_resources:
                   cluster: grpc_server
                   prefix_rewrite: "/"
                   max_grpc_timeout: 0s
+              - match: { prefix: "/api/" }
+                route:
+                  cluster: restful_api_server
+                  prefix_rewrite: "/"
               - match: { prefix: "/" }
                 route: 
                   cluster: react_app_nginx
@@ -48,7 +52,7 @@ static_resources:
       - lb_endpoints:
         - endpoint:
             address:
-              socket_address: { address: grpc-web, port_value: 80}
+              socket_address: { address: web, port_value: 80}
               
   - name: grpc_server
     connect_timeout: 5s
@@ -62,3 +66,15 @@ static_resources:
           - endpoint:
               address:
                 socket_address: { address: grpc-server, port_value: 5002}
+
+  - name: restful_api_server
+    connect_timeout: 5s
+    type: strict_dns
+    lb_policy: round_robin
+    load_assignment:
+      cluster_name: restful_api_server
+      endpoints:
+        - lb_endpoints:
+          - endpoint:
+              address:
+                socket_address: { address: restful-api-server, port_value: 4888}

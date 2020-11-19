@@ -1,13 +1,20 @@
 version: '3'
 services:
   grpc-server:
+    container_name: grpc-server
     build:
       context: ./grpc-server
-  grpc-web:
+  web:
+    container_name: web
     build:
-      context: ./grpc-web
+      context: ./web
+  restful-api-server:
+    container_name: restful-api-server
+    build:
+      context: ./restful-api-server
   envoy:
     image: envoyproxy/envoy:v1.16-latest
+    container_name: envoy
     ports:
     - "80:80"
     - "9901:9901" # admin page
@@ -17,9 +24,9 @@ services:
     - ./envoy/envoy.yaml:/etc/envoy/envoy.yaml
     links:
     - grpc-server
-    - grpc-web
+    - restful-api-server
+    - web
     depends_on:
     - grpc-server
-    - grpc-web
-  
-
+    - web
+    - restful-api-server
