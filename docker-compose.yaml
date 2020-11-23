@@ -3,15 +3,15 @@ services:
   grpc-server:
     container_name: grpc-server
     build:
-      context: ./grpc-server
+      context: ./src/grpc-server
   web:
     container_name: web
     build:
-      context: ./web
+      context: ./src/web
   restful-api-server:
     container_name: restful-api-server
     build:
-      context: ./restful-api-server
+      context: ./src/restful-api-server
   envoy:
     image: envoyproxy/envoy:v1.16-latest
     container_name: envoy
@@ -21,7 +21,7 @@ services:
     environment:
     - ENVOY_UID=0
     volumes:
-    - ./envoy/envoy.yaml:/etc/envoy/envoy.yaml
+    - ./src/envoy/envoy.yaml:/etc/envoy/envoy.yaml
     links:
     - grpc-server
     - restful-api-server
