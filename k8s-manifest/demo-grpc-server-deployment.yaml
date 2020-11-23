@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-grpc-server-deployment
+  labels:
+    app: demo-grpc-server
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: demo-grpc-server
+  template:
+    metadata:
+      labels:
+        app: demo-grpc-server
+    spec:
+      containers:
+      - name: demo-grpc-server
+        image: roydockerrepo/demo-grpc-server:1.0
+        ports:
+        - containerPort: 5002

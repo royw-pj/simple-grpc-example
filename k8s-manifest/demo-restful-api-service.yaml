@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-restful-api-service
+spec:
+  selector:
+    app: demo-restful-api-server
+  ports:
+    - protocol: TCP
+      port: 4888
+      targetPort: 4888

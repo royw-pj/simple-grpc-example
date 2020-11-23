@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-restful-api-server-deployment
+  labels:
+    app: demo-restful-api-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-restful-api-server
+  template:
+    metadata:
+      labels:
+        app: demo-restful-api-server
+    spec:
+      containers:
+      - name: restful-api-server
+        image: roydockerrepo/demo-restful-api-server:1.0
+        ports:
+        - containerPort: 4888
